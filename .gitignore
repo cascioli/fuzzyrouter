@@ -27,6 +27,15 @@ go.work.sum
 # env file
 .env
 
+# Local config (commit config.example.yaml, not the real one)
+config.yaml
+
+# Claude Code project instructions (local only)
+CLAUDE.md
+
+# Build output
+/fuzzyrouter
+
 # Editor/IDE
 # .idea/
 # .vscode/

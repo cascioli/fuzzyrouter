@@ -1,0 +1,28 @@
+# Build artifacts
+fuzzyrouter
+*.exe
+
+# Git
+.git
+.gitignore
+
+# Docker files (no need to copy into image)
+Dockerfile
+docker-compose.yml
+.dockerignore
+
+# Docs & meta
+README.md
+*.md
+
+# Tests (not needed in image)
+**/*_test.go
+
+# Dev configs / secrets
+.env
+.env.*
+*.local
+
+# IDE
+.vscode/
+.idea/

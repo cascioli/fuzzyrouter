@@ -1,0 +1,41 @@
+# FuzzyRouter configuration
+# Copy to config.yaml and adjust for your environment.
+# All values can be overridden via environment variables (see README).
+
+# TCP port the HTTP server listens on.
+# ENV: FUZZY_PORT
+port: 8080
+
+# Log verbosity: debug | info | warn | error
+# ENV: FUZZY_LOG_LEVEL
+log_level: info
+
+# HTTP status code used for redirects.
+# 301 = Moved Permanently (cached by browsers)
+# 302 = Found (temporary, safer for testing)
+# ENV: FUZZY_REDIRECT_CODE
+redirect_code: 302
+
+# Root domain appended to matched subdomains.
+# Result: https://<match>.<base_domain>
+# ENV: FUZZY_BASE_DOMAIN
+base_domain: example.com
+
+# Minimum similarity score to accept a match [0.0–1.0].
+# Lower = more permissive. 0.5 is a sensible default.
+# Requests below threshold return HTTP 404.
+# ENV: FUZZY_THRESHOLD
+match_threshold: 0.5
+
+# Exhaustive list of valid subdomains for your domain.
+# ENV: FUZZY_SUBDOMAINS (comma-separated)
+subdomains:
+  - app
+  - admin
+  - api
+  - auth
+  - blog
+  - shop
+  - docs
+  - status
+  - mail

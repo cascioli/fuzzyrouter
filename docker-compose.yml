@@ -1,0 +1,30 @@
+services:
+  fuzzyrouter:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: fuzzyrouter:dev
+    container_name: fuzzyrouter
+    restart: unless-stopped
+    ports:
+      - "8080:8080"
+    volumes:
+      # Mount your config — copy config.example.yaml → config.yaml first
+      - ./config.yaml:/config.yaml:ro
+    environment:
+      FUZZY_CONFIG: /config.yaml
+      # Optional overrides (uncomment to use):
+      # FUZZY_PORT: "8080"
+      # FUZZY_LOG_LEVEL: "debug"
+      # FUZZY_REDIRECT_CODE: "302"
+      # FUZZY_BASE_DOMAIN: "example.com"
+      # FUZZY_THRESHOLD: "0.5"
+      # FUZZY_SUBDOMAINS: "app,admin,api,auth,blog"
+    healthcheck:
+      test: ["CMD", "/fuzzyrouter", "-healthcheck"]
+      # scratch has no curl/wget — use the binary's own health flag (added below)
+      # Alternative: use a sidecar or remove healthcheck for pure scratch images
+      interval: 30s
+      timeout: 5s
+      retries: 3
+      start_period: 5s
