@@ -104,6 +104,17 @@ curl http://localhost:8080/healthz
 # → {"status":"ok"}
 ```
 
+**PowerShell (no curl):**
+
+```powershell
+# Should redirect to http://app.example.com/
+Invoke-WebRequest -Uri http://localhost:8080/ -Headers @{ Host = "atp.example.com" } -MaximumRedirection 0 -UseBasicParsing -ErrorAction SilentlyContinue | Select-Object StatusCode, Headers
+
+# Health probe
+Invoke-WebRequest -Uri http://localhost:8080/healthz -UseBasicParsing | Select-Object -ExpandProperty Content
+# → {"status":"ok"}
+```
+
 ---
 
 ## Configuration
