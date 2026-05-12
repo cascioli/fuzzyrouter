@@ -9,10 +9,3 @@ type Matcher interface {
 	Match(input string) (match string, score float64)
 }
 
-// Result holds the outcome of a fuzzy match operation.
-type Result struct {
-	Input    string
-	Match    string
-	Score    float64
-	Exact    bool
-}

@@ -38,11 +38,12 @@ func New(opts Options) *Server {
 	mux.HandleFunc("/healthz", s.handleHealth)
 
 	s.http = &http.Server{
-		Addr:         fmt.Sprintf(":%d", opts.Port),
-		Handler:      mux,
-		ReadTimeout:  5 * time.Second,
-		WriteTimeout: 10 * time.Second,
-		IdleTimeout:  120 * time.Second,
+		Addr:              fmt.Sprintf(":%d", opts.Port),
+		Handler:           mux,
+		ReadHeaderTimeout: 5 * time.Second,
+		ReadTimeout:       10 * time.Second,
+		WriteTimeout:      10 * time.Second,
+		IdleTimeout:       120 * time.Second,
 	}
 
 	return s
@@ -79,6 +80,7 @@ func (s *Server) handleRequest(w http.ResponseWriter, r *http.Request) {
 	if match == "" {
 		s.opts.Logger.Warn("no match found",
 			"subdomain", subdomain,
+			"method", r.Method,
 			"remote_addr", r.RemoteAddr,
 		)
 		http.NotFound(w, r)
