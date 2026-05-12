@@ -185,7 +185,7 @@ FuzzyRouter outputs JSON logs to stdout:
 ```json
 {"time":"2024-01-15T10:23:01Z","level":"INFO","msg":"server starting","addr":":8080","base_domain":"example.com"}
 {"time":"2024-01-15T10:23:05Z","level":"INFO","msg":"redirect","from":"atp","to":"app","score":"0.667","target":"http://app.example.com/","method":"GET","remote_addr":"172.18.0.1:54321","user_agent":"curl/8.4.0"}
-{"time":"2024-01-15T10:23:07Z","level":"WARN","msg":"no match found","subdomain":"xyz","remote_addr":"172.18.0.1:54322"}
+{"time":"2024-01-15T10:23:07Z","level":"WARN","msg":"no match found","subdomain":"xyz","method":"GET","remote_addr":"172.18.0.1:54322"}
 ```
 
 ---
@@ -235,7 +235,7 @@ fuzzyrouter/
 │   │   ├── config.go
 │   │   └── config_test.go
 │   ├── matcher/            # Fuzzy matching (interface-driven)
-│   │   ├── matcher.go      # Matcher interface + Result type
+│   │   ├── matcher.go      # Matcher interface
 │   │   ├── levenshtein.go  # Levenshtein implementation
 │   │   └── levenshtein_test.go
 │   └── server/             # HTTP handler + lifecycle
